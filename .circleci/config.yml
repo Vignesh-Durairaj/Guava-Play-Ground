@@ -6,6 +6,8 @@ jobs:
       working_directory: ~/Guava-Play-Ground
       docker:
          - image: circleci/openjdk:11
+      environment:
+         MAVEN_OPTS: -Xmx2048m
       steps:
          - checkout
          - restore_cache:
