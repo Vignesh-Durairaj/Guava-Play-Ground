@@ -1,0 +1,25 @@
+version: 2.1
+orbs:
+   codecov: codecov/codecov@1.0.4
+jobs:
+   build:
+      working_directory: ~/Guava-Play-Ground
+      docker:
+         - image: circleci/openjdk:11
+      steps:
+         - checkout
+         - restore_cache:
+            key: Guava-Play-Ground-{{ checksum "pom.xml" }}
+         - run: mvn dependency:go-offline
+         - save_cache: 
+            paths:
+               - ~/.m2
+            key: Guava-Play-Ground-{{ checksum "pom.xml" }}
+         - run: mvn package
+         - store_test_results: 
+            path: target/surefire-reports
+#         - codecov/upload:
+#            file: target/my-reports/jacoco.xml
+#            token: 96c6d7c1-7f08-4916-8bf4-7790425fb04c
+         - store_artifacts: 
+            path: target/Guava-Exercises-0.0.1-SNAPSHOT.jar
