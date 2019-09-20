@@ -6,6 +6,6 @@ import java.util.List;
 public class FileParserHelper {
 
 	public static List<String> getAllWords (final File inputFile) {
-		return List.of();
+		return null;
 	}
 }
