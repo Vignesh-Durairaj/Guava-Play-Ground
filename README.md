@@ -1,2 +1,2 @@
-# Guava-Play-Ground
-A play area to practice some useful elements from google guava
+# Google Guava
+This project is intended to play with the useful elements supplied by Google Guava
