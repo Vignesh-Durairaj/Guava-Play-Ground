@@ -15,6 +15,6 @@ public class FileParserTest {
 	public void testAllWordsInFile() {
 		List<String> words = FileParserHelper.getAllWords(null);
 		assertNotNull(words);
-		assertEquals(0, words);
+		assertEquals(0, words.size());
 	}
 }
