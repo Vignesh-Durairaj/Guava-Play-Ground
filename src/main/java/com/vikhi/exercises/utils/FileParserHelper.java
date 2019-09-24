@@ -13,18 +13,17 @@ public class FileParserHelper {
 		// No constructor needed for the static class
 	}
 	
-	public static List<String> getAllWords (final Path inputFilePath) {
+	public static List<String> getAllWords (final Path inputFilePath) throws IOException {
 		List<String> words = null;
-		try {
-			words = Files
-					.lines(inputFilePath)
-					.map(line -> line.replaceAll("[,.]", "").split(" "))
-					.flatMap(arr -> Arrays.stream(arr))
-					.filter(word -> !"".equals(word))
-					.collect(Collectors.toList());
-		} catch (IOException e) {
-			System.out.println("Encountered IO Exception.");;
+		if (inputFilePath == null) {
+			return words;
 		}
-		return words;
+
+		return Files
+				.lines(inputFilePath)
+				.map(line -> line.replaceAll("[,.]", "").split(" "))
+				.flatMap(arr -> Arrays.stream(arr))
+				.filter(word -> !"".equals(word))
+				.collect(Collectors.toList());
 	}
 }
