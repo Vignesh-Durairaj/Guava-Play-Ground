@@ -3,6 +3,7 @@ package com.vikhi.test.utils;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.util.Comparator;
@@ -38,5 +39,17 @@ public class MultiSetTest {
 			.stream()
 			.sorted(Comparator.comparing(Multiset.Entry::getCount))
 			.forEach(entry -> System.out.println(entry.getElement() + ":" + entry.getCount()));
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testNullFile() {
+		multiSetExercise.getWordOccurrences(null);
+		fail("The above line should throw an exception but was not !");
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testInvalidFile() {
+		multiSetExercise.getWordOccurrences(new File("test.test"));
+		fail("The above line should throw an exception but was not !");
 	}
 }
