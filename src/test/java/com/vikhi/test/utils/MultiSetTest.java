@@ -42,7 +42,7 @@ public class MultiSetTest {
 			.entrySet()
 			.stream()
 			.sorted(Comparator.comparing(Multiset.Entry::getCount))
-			.forEach(entry -> LOGGER.info(entry.getElement() + ":" + entry.getCount()));
+			.forEach(entry -> LOGGER.debug(entry.getElement() + ":" + entry.getCount()));
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
