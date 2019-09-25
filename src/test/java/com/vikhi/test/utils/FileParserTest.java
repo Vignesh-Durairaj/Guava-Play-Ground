@@ -23,7 +23,7 @@ public class FileParserTest {
 	public void testAllWordsInFile() {
 		List<String> words = null;
 		try {
-			words = FileParserHelper.getAllWords(Paths.get("twister.txt"));
+			words = FileParserHelper.getAllWords(Paths.get("src/resources/twister.txt"));
 		} catch (IOException e) {
 			fail("This method is suppose to get passed");
 		}

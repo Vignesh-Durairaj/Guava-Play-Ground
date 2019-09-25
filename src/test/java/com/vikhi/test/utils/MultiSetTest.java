@@ -29,7 +29,7 @@ public class MultiSetTest {
 	
 	@Test
 	public void testValidFile() {
-		File inputFile = new File("twister.txt");
+		File inputFile = new File("src/resources/twister.txt");
 		Multiset<String> wordOccurrence = multiSetExercise.getWordOccurrences(inputFile);
 		
 		assertNotNull(wordOccurrence);
