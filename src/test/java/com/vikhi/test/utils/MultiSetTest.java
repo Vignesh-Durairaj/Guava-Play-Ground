@@ -8,6 +8,8 @@ import static org.junit.Assert.fail;
 import java.io.File;
 import java.util.Comparator;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,6 +18,8 @@ import com.vikhi.exercises.utils.collections.MultiSetExercise;
 
 public class MultiSetTest {
 
+	private static final Logger LOGGER = LogManager.getLogger();
+	
 	private MultiSetExercise multiSetExercise;
 	
 	@Before
@@ -25,7 +29,7 @@ public class MultiSetTest {
 	
 	@Test
 	public void testValidFile() {
-		File inputFile = new File("twister.txt");
+		File inputFile = new File("src/resources/twister.txt");
 		Multiset<String> wordOccurrence = multiSetExercise.getWordOccurrences(inputFile);
 		
 		assertNotNull(wordOccurrence);
@@ -38,7 +42,7 @@ public class MultiSetTest {
 			.entrySet()
 			.stream()
 			.sorted(Comparator.comparing(Multiset.Entry::getCount))
-			.forEach(entry -> System.out.println(entry.getElement() + ":" + entry.getCount()));
+			.forEach(entry -> LOGGER.info(entry.getElement() + ":" + entry.getCount()));
 	}
 	
 	@Test(expected = IllegalArgumentException.class)

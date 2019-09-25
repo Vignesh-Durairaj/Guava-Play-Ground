@@ -9,24 +9,28 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 
 import com.vikhi.exercises.utils.FileParserHelper;
 
 public class FileParserTest {
+	
+	public static final Logger LOGGER = LogManager.getLogger(FileParserTest.class);
 
 	@Test
 	public void testAllWordsInFile() {
 		List<String> words = null;
 		try {
-			words = FileParserHelper.getAllWords(Paths.get("twister.txt"));
+			words = FileParserHelper.getAllWords(Paths.get("src/resources/twister.txt"));
 		} catch (IOException e) {
 			fail("This method is suppose to get passed");
 		}
 		
 		assertNotNull(words);
 		assertEquals(75, words.size());
-		System.out.println(words);
+		LOGGER.info(words);
 	}
 	
 	@Test(expected = IOException.class)
