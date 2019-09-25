@@ -5,20 +5,17 @@ Configuration:
     Console:
       name: LogToConsole
       PatternLayout:
-        Pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
+        Pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1.} - %msg%n"
         
-    #File:
-    #  name: File
-    #  fileName: logs/app.log
-    #  PatternLayout:
-    #    Pattern: "%d %p %C{1.} [%t] %m%n"
-
     RollingFile:
       - name: LogToRollingFile
         fileName: logs/guava-exercise.log
         filePattern: "logs/$${date:yyyy-MM}/guava-exercise-%d{MM-dd-yyyy}-%i.log.gz"
         PatternLayout:
-          pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
+          pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c - %msg%n"
+        Filters:
+          ThresholdFilter:
+            level: info
         Policies:
           SizeBasedTriggeringPolicy:
             size: 10MB
@@ -32,9 +29,8 @@ Configuration:
         additivity: false
         AppenderRef:
           - ref: LogToConsole
+          - ref: LogToRollingFile
 
     Root:
-      level: info
       AppenderRef:
         - ref: LogToConsole
-        - ref: LogToRollingFile
