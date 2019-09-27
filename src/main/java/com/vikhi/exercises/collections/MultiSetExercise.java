@@ -1,4 +1,4 @@
-package com.vikhi.exercises.utils.collections;
+package com.vikhi.exercises.collections;
 
 import java.io.File;
 import java.io.IOException;

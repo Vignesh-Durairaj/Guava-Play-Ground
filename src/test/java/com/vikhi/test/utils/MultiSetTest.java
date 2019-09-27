@@ -14,7 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.google.common.collect.Multiset;
-import com.vikhi.exercises.utils.collections.MultiSetExercise;
+import com.vikhi.exercises.collections.MultiSetExercise;
 
 public class MultiSetTest {
 
