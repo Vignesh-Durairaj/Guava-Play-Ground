@@ -1,8 +1,11 @@
 package com.vikhi.test.utils;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +36,16 @@ public class MultiListTest {
 		assertNotNull(immutablePersonList);
 		assertThat(immutablePersonList.size(), is(3));
 		immutablePersonList.stream().forEach(System.out::println);
+		assertSame(persons.get(0), immutablePersonList.get(0));
+		assertSame(persons.get(1), immutablePersonList.get(2));
+		assertSame(persons.get(2), immutablePersonList.get(1));
 		
+		immutablePersonList
+			.stream()
+			.peek(person -> assertNotNull(person.toString()))
+			.peek(person -> assertNotNull(person.hashCode()))
+			.peek(person -> assertEquals(String.class, person.toString().getClass()))
+			.peek(person -> System.out.println(person.hashCode()))
+			.forEach(person -> assertTrue(person.hashCode() >= Integer.MIN_VALUE));
 	}
 }
