@@ -7,7 +7,6 @@ import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
@@ -16,7 +15,7 @@ import org.junit.Test;
 import com.vikhi.exercises.collections.MultiListExercise;
 import com.vikhi.exercises.model.Person;
 
-public class MultiListTest {
+public class MultiListTest extends BaseTest {
 
 	private List<Person> persons;
 	private MultiListExercise multiListGenerator;
@@ -24,10 +23,8 @@ public class MultiListTest {
 	@Before
 	public void init() {
 		multiListGenerator = new MultiListExercise();
-		persons = new ArrayList<>();
-		persons.add(new Person("Vignesh", "Durairaj", 32));
-		persons.add(new Person("Venugopal", "Nadakuditi", 37));
-		persons.add(new Person("Narasimhan", "Pradeep", 39));
+		initData();
+		persons = getPersons();
 	}
 	
 	@Test
@@ -48,4 +45,6 @@ public class MultiListTest {
 			.peek(person -> System.out.println(person.hashCode()))
 			.forEach(person -> assertTrue(person.hashCode() >= Integer.MIN_VALUE));
 	}
+	
+	
 }
