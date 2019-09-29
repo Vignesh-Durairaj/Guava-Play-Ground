@@ -33,9 +33,9 @@ public class MultiListTest extends BaseTest {
 		assertNotNull(immutablePersonList);
 		assertThat(immutablePersonList.size(), is(3));
 		immutablePersonList.stream().forEach(System.out::println);
-		assertSame(persons.get(0), immutablePersonList.get(0));
+		assertEquals(persons.get(0), immutablePersonList.get(0));
 		assertSame(persons.get(1), immutablePersonList.get(2));
-		assertSame(persons.get(2), immutablePersonList.get(1));
+		assertEquals(persons.get(2), immutablePersonList.get(1));
 		
 		immutablePersonList
 			.stream()
