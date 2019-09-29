@@ -6,12 +6,15 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+import static org.mockito.Mockito.mock;
 
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import com.google.common.collect.ImmutableList;
 import com.vikhi.exercises.collections.MultiListExercise;
 import com.vikhi.exercises.model.Person;
 
@@ -28,7 +31,7 @@ public class MultiListTest extends BaseTest {
 	}
 	
 	@Test
-	public void testImmutableList() {
+	public void testImmutableListObject() {
 		List<Person> immutablePersonList = multiListGenerator.getImmutableList(persons.get(0), persons.get(2), persons.get(1));
 		assertNotNull(immutablePersonList);
 		assertThat(immutablePersonList.size(), is(3));
@@ -46,5 +49,10 @@ public class MultiListTest extends BaseTest {
 			.forEach(person -> assertTrue(person.hashCode() >= Integer.MIN_VALUE));
 	}
 	
-	
+	@Test (expected = UnsupportedOperationException.class)
+	public void testImmutabilityOfTheList() {
+		List<Person> newImmutableList = ImmutableList.copyOf(persons);
+		newImmutableList.add(mock(Person.class));
+		fail("The above operation should trow an exception, but not!");
+	}
 }
