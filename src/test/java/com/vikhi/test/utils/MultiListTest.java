@@ -9,6 +9,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.Before;
@@ -67,5 +68,29 @@ public class MultiListTest extends BaseTest {
 		} catch (UnsupportedOperationException e) {
 			LOGGER.debug("This operation is not supported");
 		}
+	}
+	
+	@Test
+	public void testIndirectManipulationIsAvoided() {
+		List<Person> anotherList = persons;
+		List<Person> javaImmutableList = Collections.unmodifiableList(persons);
+		List<Person> guavaImmutableList = ImmutableList.copyOf(persons);
+		assertEquals(3, javaImmutableList.size());
+		assertEquals(3, guavaImmutableList.size());
+		
+		anotherList.add(mock(Person.class));
+		assertEquals(4, javaImmutableList.size());
+		assertEquals(3, guavaImmutableList.size());
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void testNullContentForImmutableList() {
+		List<Person> anotherList = persons;
+		persons.add(null);
+		persons.add(mock(Person.class));
+		assertEquals(5, anotherList.size());
+		
+		ImmutableList.copyOf(persons);
+		fail("Guava immutable list throws exception while copying a NULL element as a list content!");
 	}
 }
