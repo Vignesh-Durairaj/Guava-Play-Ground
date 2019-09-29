@@ -23,6 +23,7 @@ public class MultiListTest extends BaseTest {
 	private List<Person> persons;
 	private MultiListExercise multiListGenerator;
 	
+	
 	@Before
 	public void init() {
 		multiListGenerator = new MultiListExercise();
@@ -54,5 +55,17 @@ public class MultiListTest extends BaseTest {
 		List<Person> newImmutableList = ImmutableList.copyOf(persons);
 		newImmutableList.add(mock(Person.class));
 		fail("The above operation should trow an exception, but not!");
+	}
+	
+	@Test
+	public void testManipulationofImmutableList() {
+		List<Person> newImmutableList = ImmutableList.copyOf(persons);
+		persons.set(2, mock(Person.class));
+		try {
+			newImmutableList.set(1, mock(Person.class));
+			fail("This operation is suppose to throw an exception !");
+		} catch (UnsupportedOperationException e) {
+			LOGGER.debug("This operation is not supported");
+		}
 	}
 }
