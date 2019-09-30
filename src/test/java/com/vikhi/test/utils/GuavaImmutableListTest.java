@@ -38,9 +38,10 @@ public class GuavaImmutableListTest extends BaseTest {
 		assertNotNull(immutablePersonList);
 		assertThat(immutablePersonList.size(), is(3));
 		immutablePersonList.stream().forEach(System.out::println);
-		assertEquals(persons.get(0), immutablePersonList.get(0));
+		assertSame(persons.get(0), immutablePersonList.get(0));
 		assertSame(persons.get(1), immutablePersonList.get(2));
-		assertEquals(persons.get(2), immutablePersonList.get(1));
+		assertSame(persons.get(2), immutablePersonList.get(1));
+		assertTrue(persons.get(0).toString() instanceof String);
 		
 		immutablePersonList
 			.stream()
