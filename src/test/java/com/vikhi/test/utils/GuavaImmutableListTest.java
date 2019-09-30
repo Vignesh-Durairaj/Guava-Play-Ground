@@ -16,18 +16,18 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.google.common.collect.ImmutableList;
-import com.vikhi.exercises.collections.MultiListExercise;
+import com.vikhi.exercises.collections.ImmutableListExercise;
 import com.vikhi.exercises.model.Person;
 
-public class MultiListTest extends BaseTest {
+public class GuavaImmutableListTest extends BaseTest {
 
 	private List<Person> persons;
-	private MultiListExercise multiListGenerator;
+	private ImmutableListExercise multiListGenerator;
 	
 	
 	@Before
 	public void init() {
-		multiListGenerator = new MultiListExercise();
+		multiListGenerator = new ImmutableListExercise();
 		initData();
 		persons = getPersons();
 	}
