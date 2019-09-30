@@ -37,7 +37,7 @@ public class GuavaImmutableListTest extends BaseTest {
 		List<Person> immutablePersonList = multiListGenerator.getImmutableList(persons.get(0), persons.get(2), persons.get(1));
 		assertNotNull(immutablePersonList);
 		assertThat(immutablePersonList.size(), is(3));
-		immutablePersonList.stream().forEach(System.out::println);
+		immutablePersonList.stream().forEach(LOGGER::debug);
 		assertSame(persons.get(0), immutablePersonList.get(0));
 		assertSame(persons.get(1), immutablePersonList.get(2));
 		assertSame(persons.get(2), immutablePersonList.get(1));
@@ -48,7 +48,7 @@ public class GuavaImmutableListTest extends BaseTest {
 			.peek(person -> assertNotNull(person.toString()))
 			.peek(person -> assertNotNull(person.hashCode()))
 			.peek(person -> assertEquals(String.class, person.toString().getClass()))
-			.peek(person -> System.out.println(person.hashCode()))
+			.peek(person -> LOGGER.debug(person.hashCode()))
 			.forEach(person -> assertTrue(person.hashCode() >= Integer.MIN_VALUE));
 	}
 	
