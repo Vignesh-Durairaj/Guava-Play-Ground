@@ -23,6 +23,12 @@ public class MultiMapTest extends BaseTest{
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
+	public void testEmptyFileName() {
+		multiMapFactory.getListOfWordsByCount("");
+		fail("The above line should throw an exception but was not !");
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
 	public void testInvalidFile() {
 		multiMapFactory.getListOfWordsByCount("test.test");
 		fail("The above line should throw an exception but was not !");
