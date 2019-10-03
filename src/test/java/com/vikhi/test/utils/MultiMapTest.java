@@ -4,15 +4,18 @@ import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import com.vikhi.exercises.collections.MultiMapExercise;
 
@@ -58,5 +61,18 @@ public class MultiMapTest extends BaseTest{
 		
 		assertTrue(wordsByCountMap.get(0) instanceof List);
 		assertThat(wordsByCountMap.size(), is(28));
+		
+		Multimap<Integer, String> anotherMultiMap = ImmutableMultimap.copyOf(wordsByCountMap);
+		anotherMultiMap
+			.entries()
+			.stream()
+			.forEach(entry -> {
+				wordsByCountMap.get(entry.getKey())
+					.stream()
+					.forEach(entryValue -> {
+						assertNotNull(entryValue);
+						LOGGER.debug("Entry Value : '" + entryValue + "' of count : " + entry.getKey());
+					});
+			});
 	}
 }
