@@ -1,9 +1,14 @@
 package com.vikhi.test.utils;
 
 import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -43,5 +48,15 @@ public class MultiMapTest extends BaseTest{
 		Multimap<Integer, String> wordsByCountMap = multiMapFactory.getListOfWordsByCount("src/resources/twister.txt");
 		assertNotNull(wordsByCountMap);
 		assertThat(wordsByCountMap.keys(), hasItem(2));
+		wordsByCountMap
+			.entries()
+			.stream()
+			.forEach(entry -> {
+				LOGGER.debug(entry.getKey() + " --> " + entry.getValue());
+				assertNotSame(List.class, entry.getValue().getClass());
+			});
+		
+		assertTrue(wordsByCountMap.get(0) instanceof List);
+		assertThat(wordsByCountMap.size(), is(28));
 	}
 }
