@@ -20,9 +20,9 @@ public class BaseTest {
 	
 	public void initData() {
 		List<Person> persons = new ArrayList<>();
-		persons.add(mock(Person.class));
-		persons.add(mock(Person.class));
-		persons.add(mock(Person.class));
+		persons.add(new Person("Vignesh", "Durairaj", 32));
+		persons.add(new Person(null, "Durairaj", 32));
+		persons.add(new Person("Vignesh", null, 32));
 		
 		when(personDao.getPersons()).thenReturn(persons);
 	}
