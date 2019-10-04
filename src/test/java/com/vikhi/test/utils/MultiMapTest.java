@@ -1,5 +1,6 @@
 package com.vikhi.test.utils;
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
@@ -64,6 +65,7 @@ public class MultiMapTest extends BaseTest{
 		int count = wordsByCountMap.get(2).size();
 		wordsByCountMap.put(2, "anotherWord");
 		assertEquals(count + 1, wordsByCountMap.get(2).size());
+		assertThat(wordsByCountMap.get(2).toString(), containsString("anotherWord"));
 		
 		Multimap<Integer, String> anotherMultiMap = ImmutableMultimap.copyOf(wordsByCountMap);
 		anotherMultiMap
