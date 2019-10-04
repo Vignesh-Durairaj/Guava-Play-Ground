@@ -62,11 +62,6 @@ public class MultiMapTest extends BaseTest{
 		assertTrue(wordsByCountMap.get(0) instanceof List);
 		assertThat(wordsByCountMap.size(), is(28));
 		
-		int count = wordsByCountMap.get(2).size();
-		wordsByCountMap.put(2, "anotherWord");
-		assertEquals(count + 1, wordsByCountMap.get(2).size());
-		assertThat(wordsByCountMap.get(2).toString(), containsString("anotherWord"));
-		
 		Multimap<Integer, String> anotherMultiMap = ImmutableMultimap.copyOf(wordsByCountMap);
 		anotherMultiMap
 			.entries()
@@ -79,5 +74,18 @@ public class MultiMapTest extends BaseTest{
 						LOGGER.debug("Entry Value : '" + entryValue + "' of count : " + entry.getKey());
 					});
 			});
+		
+		int count = wordsByCountMap.get(2).size();
+		wordsByCountMap.put(2, "anotherWord");
+		assertEquals(count + 1, wordsByCountMap.get(2).size());
+		assertThat(wordsByCountMap.get(2).toString(), containsString("anotherWord"));
+		
+		try {
+			assertThat(anotherMultiMap.get(2).size(), is(count));
+			anotherMultiMap.put(2, "anotherString");
+			fail("The above operation should throw an exception");
+		} catch (UnsupportedOperationException e) {
+			LOGGER.warn("This operation is not supported");
+		}
 	}
 }
