@@ -14,3 +14,6 @@
 A play area to get hands on experience on Google Guava framework. Below are its features upon which this repository works on.
 
 * Guava Collections
+ * Immutable List
+ * Multi HashMap
+ * Multi Set
