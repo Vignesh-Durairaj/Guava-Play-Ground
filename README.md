@@ -17,3 +17,14 @@ A play area to get hands on experience on Google Guava framework. Below are its 
   * Immutable List
   * Multi HashMap
   * Multi Set
+
+## Dependencies used
+
+* Third party dependencies
+  1. Project Lombok - To simplify the model objects
+  2. Log4j 2 - For logging (on both console and file)
+  3. Mockito 0.8 - For mocking the value objects while testing
+
+* Java
+  1. Runtime - JRE 11
+  2. Build time - Java SE 11
