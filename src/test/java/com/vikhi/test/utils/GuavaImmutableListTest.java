@@ -29,7 +29,7 @@ public class GuavaImmutableListTest extends BaseTest {
 	public void init() {
 		multiListGenerator = new ImmutableListExercise();
 		initData();
-		persons = getPersons();
+		persons = personDao.getPersons();
 	}
 	
 	@Test
