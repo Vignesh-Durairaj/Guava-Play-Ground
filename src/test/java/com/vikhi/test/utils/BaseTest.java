@@ -5,6 +5,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -53,6 +54,9 @@ public class BaseTest {
 		when(addressDao.getAddresses()).thenReturn(addresses);
 		
 		List<Employee> employees = new ArrayList<>();
+		employees.add(new Employee(1, persons.get(0), addresses.get(0), List.of(mobileNumbers.get(0), mobileNumbers.get(1))));
+		employees.add(new Employee(2, persons.get(1), addresses.get(1), List.of(mobileNumbers.get(2))));
+		employees.add(new Employee(3, persons.get(2), addresses.get(2), List.of(mobileNumbers.get(3), mobileNumbers.get(4))));
 		when(employeeDao.getAllEmployees()).thenReturn(employees);
 		
 	}
