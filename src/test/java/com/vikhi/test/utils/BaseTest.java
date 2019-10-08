@@ -13,6 +13,7 @@ import com.vikhi.exercises.dao.AddressDao;
 import com.vikhi.exercises.dao.EmployeeDao;
 import com.vikhi.exercises.dao.MobileNumberDao;
 import com.vikhi.exercises.dao.PersonDao;
+import com.vikhi.exercises.model.Address;
 import com.vikhi.exercises.model.MobileNumber;
 import com.vikhi.exercises.model.Person;
 
@@ -30,7 +31,6 @@ public class BaseTest {
 		persons.add(new Person("Vignesh", "Durairaj", 32));
 		persons.add(new Person(null, "Durairaj", 32));
 		persons.add(new Person("Vignesh", null, 32));
-		
 		when(personDao.getPersons()).thenReturn(persons);
 		
 		List<MobileNumber> mobileNumbers = new ArrayList<>();
@@ -40,8 +40,17 @@ public class BaseTest {
 		mobileNumbers.add(new MobileNumber("852", "1 4567 8974"));
 		mobileNumbers.add(new MobileNumber("1", "121 4574 5698"));
 		mobileNumbers.add(new MobileNumber("1", "982 7456 3240"));
-		
 		when(mobileNumDao.getAllMobileNumbers()).thenReturn(mobileNumbers);
+		
+		List<Address> addresses = new ArrayList<>();
+		addresses.add(new Address("Pune", "411048"));
+		addresses.add(new Address("Chennai", "600100"));
+		addresses.add(new Address("Tokyo", "100-1103"));
+		addresses.add(new Address("Hongkong", "N/A"));
+		addresses.add(new Address("New York", "10041"));
+		addresses.add(new Address("Los Angeles", "90014"));
+		when(addressDao.getAddresses()).thenReturn(addresses);
+		
 	}
 	
 }
