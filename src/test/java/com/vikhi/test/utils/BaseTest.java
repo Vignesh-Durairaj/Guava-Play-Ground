@@ -14,6 +14,7 @@ import com.vikhi.exercises.dao.EmployeeDao;
 import com.vikhi.exercises.dao.MobileNumberDao;
 import com.vikhi.exercises.dao.PersonDao;
 import com.vikhi.exercises.model.Address;
+import com.vikhi.exercises.model.Employee;
 import com.vikhi.exercises.model.MobileNumber;
 import com.vikhi.exercises.model.Person;
 
@@ -50,6 +51,9 @@ public class BaseTest {
 		addresses.add(new Address("New York", "10041"));
 		addresses.add(new Address("Los Angeles", "90014"));
 		when(addressDao.getAddresses()).thenReturn(addresses);
+		
+		List<Employee> employees = new ArrayList<>();
+		when(employeeDao.getAllEmployees()).thenReturn(employees);
 		
 	}
 	
