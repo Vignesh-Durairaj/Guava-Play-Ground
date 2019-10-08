@@ -9,6 +9,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.vikhi.exercises.dao.AddressDao;
 import com.vikhi.exercises.dao.EmployeeDao;
 import com.vikhi.exercises.dao.MobileNumberDao;
 import com.vikhi.exercises.dao.PersonDao;
@@ -17,9 +18,10 @@ import com.vikhi.exercises.model.Person;
 
 public class BaseTest {
 
-	private PersonDao personDao = mock(PersonDao.class);
-	private EmployeeDao employeeDao = mock(EmployeeDao.class);
-	private MobileNumberDao mobileNumDao = mock(MobileNumberDao.class);
+	protected PersonDao personDao = mock(PersonDao.class);
+	protected MobileNumberDao mobileNumDao = mock(MobileNumberDao.class);
+	protected AddressDao addressDao = mock(AddressDao.class);
+	protected EmployeeDao employeeDao = mock(EmployeeDao.class);	
 	
 	protected final Logger LOGGER = LogManager.getLogger(getClass());
 	
@@ -38,9 +40,8 @@ public class BaseTest {
 		mobileNumbers.add(new MobileNumber("852", "1 4567 8974"));
 		mobileNumbers.add(new MobileNumber("1", "121 4574 5698"));
 		mobileNumbers.add(new MobileNumber("1", "982 7456 3240"));
+		
+		when(mobileNumDao.getAllMobileNumbers()).thenReturn(mobileNumbers);
 	}
 	
-	public List<Person> getPersons() {
-		return personDao.getPersons();
-	}
 }
