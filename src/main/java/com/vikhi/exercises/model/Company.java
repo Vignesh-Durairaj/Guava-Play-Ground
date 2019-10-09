@@ -2,8 +2,6 @@ package com.vikhi.exercises.model;
 
 import java.util.List;
 
-import javax.annotation.Nullable;
-
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -13,13 +11,11 @@ import lombok.ToString;
 @Getter
 @Setter
 @AllArgsConstructor
-@ToString
 @EqualsAndHashCode
-public class Employee {
-	
-	@Nullable
+@ToString
+public class Company {
+
 	private long id;
-	private Person details;
-	private Address address;
-	private List<MobileNumber> mobileNumbers;
+	private String name;
+	private List<Employee> employees;
 }
