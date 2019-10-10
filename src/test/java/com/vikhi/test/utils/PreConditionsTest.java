@@ -1,10 +1,10 @@
 package com.vikhi.test.utils;
 
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 
 public class PreConditionsTest extends BaseTest {
 
-	@Before
+	@BeforeEach
 	public void init() {
 		initData();
 	}

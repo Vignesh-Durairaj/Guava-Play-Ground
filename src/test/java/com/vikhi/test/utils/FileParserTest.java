@@ -1,9 +1,10 @@
 package com.vikhi.test.utils;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -11,16 +12,19 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import com.vikhi.exercises.utils.FileParserHelper;
 
+@DisplayName("While parsing the input file into a list of words in it")
 public class FileParserTest {
 	
 	public static final Logger LOGGER = LogManager.getLogger(FileParserTest.class);
 
+	@DisplayName("Should contain all the words from a valid file")
 	@Test
-	public void testAllWordsInFile() {
+	void testAllWordsInFile() {
 		List<String> words = null;
 		try {
 			words = FileParserHelper.getAllWords(Paths.get("src/resources/twister.txt"));
@@ -33,14 +37,15 @@ public class FileParserTest {
 		LOGGER.info(words);
 	}
 	
-	@Test(expected = IOException.class)
-	public void testAllWordsForInvalidFile() throws IOException {
-		FileParserHelper.getAllWords(Paths.get("/root/new.txt"));
-		fail("This method is not suppose to get passed");
+	@DisplayName("Should throw exception, while parsing an invalid file")
+	@Test
+	void testAllWordsForInvalidFile() throws IOException {
+		assertThrows(IOException.class, () -> FileParserHelper.getAllWords(Paths.get("/root/new.txt")));
 	}
 	
+	@DisplayName("Should throw exception, when NULL is specified as input file")
 	@Test
-	public void testAllWordsForNullObject() throws IOException {
+	void testAllWordsForNullObject() throws IOException {
 		List<String> words = FileParserHelper.getAllWords(null);
 		assertNull(words);
 	}

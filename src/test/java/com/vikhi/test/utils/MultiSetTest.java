@@ -1,17 +1,17 @@
 package com.vikhi.test.utils;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.util.Comparator;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import com.google.common.collect.Multiset;
 import com.vikhi.exercises.collections.MultiSetExercise;
@@ -22,7 +22,7 @@ public class MultiSetTest {
 	
 	private MultiSetExercise multiSetExercise;
 	
-	@Before
+	@BeforeEach
 	public void init() {
 		multiSetExercise = new MultiSetExercise();
 	}
@@ -45,15 +45,14 @@ public class MultiSetTest {
 			.forEach(entry -> LOGGER.debug(entry.getElement() + ":" + entry.getCount()));
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void testNullFile() {
-		multiSetExercise.getWordOccurrences(null);
-		fail("The above line should throw an exception but was not !");
+		assertThrows(IllegalArgumentException.class, () -> multiSetExercise.getWordOccurrences(null));
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void testInvalidFile() {
-		multiSetExercise.getWordOccurrences(new File("test.test"));
-		fail("The above line should throw an exception but was not !");
+		assertThrows(IllegalArgumentException.class, () -> multiSetExercise.getWordOccurrences(new File("test.test")))
+		;
 	}
 }

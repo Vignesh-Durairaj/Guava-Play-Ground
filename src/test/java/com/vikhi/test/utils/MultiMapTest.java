@@ -3,49 +3,53 @@ package com.vikhi.test.utils;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNotSame;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import com.vikhi.exercises.collections.MultiMapExercise;
 
+@DisplayName("While making the multi map as a map for List for a key")
 public class MultiMapTest extends BaseTest{
 
 	private MultiMapExercise multiMapFactory;
 	
-	@Before
+	@BeforeEach
 	public void init() {
 		multiMapFactory = new MultiMapExercise();
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@DisplayName("should throw an exception while trying to get multi map from a NULL file")
+	@Test
 	public void testNullFile() {
-		multiMapFactory.getListOfWordsByCount(null);
-		fail("The above line should throw an exception but was not !");
+		assertThrows(IllegalArgumentException.class, () -> multiMapFactory.getListOfWordsByCount(null));
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@DisplayName("should throw an exception while trying to get multi map from a empty file name")
+	@Test
 	public void testEmptyFileName() {
-		multiMapFactory.getListOfWordsByCount("");
-		fail("The above line should throw an exception but was not !");
+		assertThrows(IllegalArgumentException.class, () -> multiMapFactory.getListOfWordsByCount(""));
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@DisplayName("should throw an exception while trying to get multi map from an invalid file")
+	@Test
 	public void testInvalidFile() {
-		multiMapFactory.getListOfWordsByCount("test.test");
-		fail("The above line should throw an exception but was not !");
+		assertThrows(IllegalArgumentException.class, () -> multiMapFactory.getListOfWordsByCount("test.test"));
 	}
 	
+	@DisplayName("should create a multimap from a valid input file, consisting list of words and their occurrences as key")
 	@Test
 	public void testMultiMapObject() {
 		Multimap<Integer, String> wordsByCountMap = multiMapFactory.getListOfWordsByCount("src/resources/twister.txt");
