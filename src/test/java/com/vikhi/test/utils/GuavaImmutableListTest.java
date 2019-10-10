@@ -14,12 +14,14 @@ import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.google.common.collect.ImmutableList;
 import com.vikhi.exercises.collections.ImmutableListExercise;
 import com.vikhi.exercises.model.Person;
 
+@DisplayName("While creating an immutable List from antother source")
 public class GuavaImmutableListTest extends BaseTest {
 
 	private List<Person> persons;
@@ -33,6 +35,7 @@ public class GuavaImmutableListTest extends BaseTest {
 		persons = personDao.getPersons();
 	}
 	
+	@DisplayName("should create an immutable from a var...args of object")
 	@Test
 	void testImmutableListObject() {
 		List<Person> immutablePersonList = multiListGenerator.getImmutableList(persons.get(0), persons.get(2), persons.get(1));
@@ -53,6 +56,7 @@ public class GuavaImmutableListTest extends BaseTest {
 			.forEach(person -> assertTrue(person.hashCode() >= Integer.MIN_VALUE));
 	}
 	
+	@DisplayName("should throw exception while trying to add as element to the immutable list")
 	@Test
 	void testImmutabilityOfTheList() {
 		assertThrows(UnsupportedOperationException.class, () -> {
@@ -62,6 +66,7 @@ public class GuavaImmutableListTest extends BaseTest {
 		
 	}
 	
+	@DisplayName("should throw exception while trying to modify the contents of immutable list")
 	@Test
 	void testManipulationofImmutableList() {
 		List<Person> newImmutableList = ImmutableList.copyOf(persons);
@@ -74,6 +79,7 @@ public class GuavaImmutableListTest extends BaseTest {
 		}
 	}
 	
+	@DisplayName("should not get mutated, while manipulating the underlying list via false reference")
 	@Test
 	public void testIndirectManipulationIsAvoided() {
 		List<Person> anotherList = persons;
@@ -87,6 +93,7 @@ public class GuavaImmutableListTest extends BaseTest {
 		assertEquals(3, guavaImmutableList.size());
 	}
 	
+	@DisplayName("should throw an NPE while trying to create an immutable list from another list containing NULL object")
 	@Test
 	public void testNullContentForImmutableList() {
 		List<Person> anotherList = persons;

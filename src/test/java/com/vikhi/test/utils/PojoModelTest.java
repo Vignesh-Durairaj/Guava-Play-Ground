@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.stream.Stream;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -22,6 +23,7 @@ import com.vikhi.exercises.model.Employee;
 import com.vikhi.exercises.model.MobileNumber;
 import com.vikhi.exercises.model.Person;
 
+@DisplayName("While creating a new Model object")
 public class PojoModelTest {
 
 	private static Stream<Arguments> classProvider() {
@@ -34,6 +36,7 @@ public class PojoModelTest {
 				);
 	}
 	
+	@DisplayName("should have proper getter and setter and with correct references")
 	@SuppressWarnings("unlikely-arg-type")
 	@ParameterizedTest(name = "{index} => clazz= {0}")
 	@MethodSource("classProvider")
