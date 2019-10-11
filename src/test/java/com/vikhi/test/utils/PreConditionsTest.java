@@ -1,5 +1,6 @@
 package com.vikhi.test.utils;
 
+import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkElementIndex;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,24 +17,24 @@ import org.junit.jupiter.api.Test;
 
 import com.vikhi.exercises.model.Employee;
 
-@DisplayName("While navigating to the list of employees")
+@DisplayName("While navigating to each of the list of employees")
 public class PreConditionsTest extends BaseTest {
 
 	List<Employee> employees;
+	Employee employeeOne, employeeTwo;
+	Exception exc;
 	
 	@BeforeEach
 	void init() {
 		initData();
 		employees = employeeDao.getAllEmployees();
+		employeeOne = employees.get(0);
+		employeeTwo = employees.get(1);
 	}
 	
 	@DisplayName("should have a valid personal details")
 	@Test
 	void testForValidEmployeeWithDetails() {
-		Exception exc;
-		Employee employeeOne = employees.get(0);
-		Employee employeeTwo = employees.get(1);
-		
 		checkNotNull(employeeOne.getDetails());
 		
 		employeeTwo.setDetails(null);
@@ -48,10 +49,6 @@ public class PreConditionsTest extends BaseTest {
 	@DisplayName("Should have atleast one mobile number")
 	@Test
 	void testForMobileNumbers() {
-		Exception exc;
-		Employee employeeOne = employees.get(0);
-		Employee employeeTwo = employees.get(1);
-		
 		checkElementIndex(0, employeeOne.getMobileNumbers().size());
 		
 		employeeTwo.setMobileNumbers(new ArrayList<>());
@@ -64,4 +61,18 @@ public class PreConditionsTest extends BaseTest {
 		assertTrue(exc.getMessage().contains(msg));
 	}
 	
+	@DisplayName("should have a workable age of 18 or above")
+	@Test
+	void testForEmployeeAge() {
+		checkArgument(employeeTwo.getDetails().getAge() >= 18);
+		assertEquals(32, employeeTwo.getDetails().getAge());
+		
+		employeeTwo.getDetails().setAge(17);
+		exc = assertThrows(IllegalArgumentException.class, () -> checkArgument(employeeTwo.getDetails().getAge() >= 18));
+		assertNull(exc.getMessage());
+		
+		String msg = "Employee age is %s, which is still below the workable age";
+		exc = assertThrows(IllegalArgumentException.class, () -> checkArgument(employeeTwo.getDetails().getAge() >= 18, msg, employeeTwo.getDetails().getAge()));
+		assertTrue(exc.getMessage().contains("Employee age is 17,"));
+	}
 }
