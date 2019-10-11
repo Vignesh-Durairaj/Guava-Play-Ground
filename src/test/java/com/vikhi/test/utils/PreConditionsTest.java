@@ -8,10 +8,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.vikhi.exercises.model.Employee;
 
+@DisplayName("While navigating to the list of employees")
 public class PreConditionsTest extends BaseTest {
 
 	List<Employee> employees;
@@ -22,8 +24,9 @@ public class PreConditionsTest extends BaseTest {
 		employees = employeeDao.getAllEmployees();
 	}
 	
+	@DisplayName("should have a valid personal details")
 	@Test
-	void testForValidEmployee() {
+	void testForValidEmployeeWithDetails() {
 		Exception exc;
 		Employee employeeOne = employees.get(0);
 		Employee employeeTwo = employees.get(1);
