@@ -23,7 +23,7 @@ public class BaseTest {
 	protected PersonDao personDao = mock(PersonDao.class);
 	protected MobileNumberDao mobileNumDao = mock(MobileNumberDao.class);
 	protected AddressDao addressDao = mock(AddressDao.class);
-	protected EmployeeDao employeeDao = mock(EmployeeDao.class);	
+	protected EmployeeDao employeeDao = mock(EmployeeDao.class);
 	
 	protected final Logger LOGGER = LogManager.getLogger(getClass());
 	
