@@ -3,6 +3,7 @@ package com.vikhi.test.utils;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkElementIndex;
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -73,6 +74,9 @@ public class PreConditionsTest extends BaseTest {
 		
 		String msg = "Employee age is %s, which is still below the workable age";
 		exc = assertThrows(IllegalArgumentException.class, () -> checkArgument(employeeTwo.getDetails().getAge() >= 18, msg, employeeTwo.getDetails().getAge()));
+		assertTrue(exc.getMessage().contains("Employee age is 17,"));
+		
+		exc = assertThrows(IllegalStateException.class, () -> checkState(employeeTwo.getDetails().getAge() >= 18, msg, employeeTwo.getDetails().getAge()));
 		assertTrue(exc.getMessage().contains("Employee age is 17,"));
 	}
 }
