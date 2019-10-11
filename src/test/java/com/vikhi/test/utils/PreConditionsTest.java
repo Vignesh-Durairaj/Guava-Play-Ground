@@ -1,10 +1,15 @@
 package com.vikhi.test.utils;
 
+import static com.google.common.base.Preconditions.checkElementIndex;
 import static com.google.common.base.Preconditions.checkNotNull;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -40,6 +45,25 @@ public class PreConditionsTest extends BaseTest {
 		String msg = "Employee's personal Details should not be null";
 		exc = assertThrows(NullPointerException.class, () -> checkNotNull(employeeTwo.getDetails(), msg));
 		assertEquals(msg, exc.getMessage());
+	}
+	
+	@DisplayName("Should have atleast one mobile number")
+	@Test
+	void testForMobileNumbers() {
+		Exception exc;
+		Employee employeeOne = employees.get(0);
+		Employee employeeTwo = employees.get(1);
+		
+		checkElementIndex(0, employeeOne.getMobileNumbers().size());
+		
+		employeeTwo.setMobileNumbers(new ArrayList<>());
+		exc = assertThrows(IndexOutOfBoundsException.class, () -> checkElementIndex(0, employeeTwo.getMobileNumbers().size()));
+		assertEquals("index (0) must be less than size (0)", exc.getMessage());
+		
+		String msg = "No mobile number found for this employee";
+		employeeTwo.setMobileNumbers(new ArrayList<>());
+		exc = assertThrows(IndexOutOfBoundsException.class, () -> checkElementIndex(0, employeeTwo.getMobileNumbers().size(), msg));
+		assertTrue(exc.getMessage().contains(msg));
 	}
 	
 }
