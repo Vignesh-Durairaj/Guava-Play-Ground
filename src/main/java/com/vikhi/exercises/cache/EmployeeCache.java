@@ -10,12 +10,12 @@ public class EmployeeCache {
 	
 	private EmployeeDao employeeDao;
 
-	public LoadingCache<Integer, Employee> getSimpleEmployeeCache() {
-		CacheLoader<Integer, Employee> simpleEmployeeCacheLoader = 
-				new CacheLoader<Integer, Employee>() {
+	public LoadingCache<Long, Employee> getSimpleEmployeeCache() {
+		CacheLoader<Long, Employee> simpleEmployeeCacheLoader = 
+				new CacheLoader<Long, Employee>() {
 
 					@Override
-					public Employee load(Integer id) throws Exception {
+					public Employee load(Long id) throws Exception {
 						return employeeDao.getEmployeeById(id);
 					}
 		};

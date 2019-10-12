@@ -8,5 +8,5 @@ public interface EmployeeDao {
 
 	public List<Employee> getAllEmployees();
 	
-	public Employee getEmployeeById(final int id);
+	public Employee getEmployeeById(final long id);
 }
