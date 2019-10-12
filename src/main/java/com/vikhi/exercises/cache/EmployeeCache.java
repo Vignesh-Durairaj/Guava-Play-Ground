@@ -22,4 +22,9 @@ public class EmployeeCache {
 		
 		return CacheBuilder.newBuilder().build(simpleEmployeeCacheLoader);
 	}
+
+	public void setEmployeeDao(EmployeeDao employeeDao) {
+		this.employeeDao = employeeDao;
+	}
+	
 }
