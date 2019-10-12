@@ -1,5 +1,7 @@
 package com.vikhi.exercises.cache;
 
+import java.util.concurrent.TimeUnit;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -31,7 +33,6 @@ public class EmployeeCache {
 				
 				@Override
 				public void onRemoval(RemovalNotification<Long, Employee> removalEvent) {
-					if (removalEvent.wasEvicted())
 					LOGGER.info(String.format("Employee of ID %s removed owing to the reason '%s'", 
 							removalEvent.getKey().longValue(), 
 							removalEvent.getCause().name()));
@@ -49,6 +50,14 @@ public class EmployeeCache {
 		return CacheBuilder
 				.newBuilder()
 				.maximumSize(maxCacheSize)
+				.removalListener(employeeRemovalListener)
+				.build(simpleEmployeeCacheLoader);
+	}
+	
+	public LoadingCache<Long, Employee> getTimeLimitedCache(final int millis) {
+		return CacheBuilder
+				.newBuilder()
+				.expireAfterAccess(millis, TimeUnit.MILLISECONDS)
 				.removalListener(employeeRemovalListener)
 				.build(simpleEmployeeCacheLoader);
 	}

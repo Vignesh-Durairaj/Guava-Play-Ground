@@ -65,4 +65,14 @@ public class EmployeeCacheTest extends BaseTest{
 		cache.getUnchecked(4L);
 		assertEquals(2, cache.size());
 	}
+	
+	@Test
+	void testTimeLimitedCache() throws InterruptedException {
+		LoadingCache<Long, Employee> cache = empCache.getTimeLimitedCache(1);
+		assertEquals(0, cache.size());
+		employee = cache.getUnchecked(1L);
+		employee = cache.getUnchecked(2L);
+		employee = cache.getUnchecked(1L);
+		assertEquals(1, cache.size());
+	}
 }
