@@ -38,5 +38,31 @@ public class EmployeeCacheTest extends BaseTest{
 		employee = cache.getUnchecked(1L);
 		assertNotNull(employee);
 		assertEquals(2, cache.size());
+		employee = cache.getUnchecked(3L);
+		assertNotNull(employee);
+		assertEquals(3, cache.size());
+		employee = cache.getUnchecked(2L);
+		assertNotNull(employee);
+		assertEquals(3, cache.size());
+		employee = cache.getUnchecked(4L);
+		assertNotNull(employee);
+		assertEquals(4, cache.size());
+	}
+	
+	@Test
+	void testSizeLimitedCache() {
+		LoadingCache<Long, Employee> cache = empCache.getSizeLimitedCache(2);
+		assertEquals(0, cache.size());
+		employee = cache.getUnchecked(1L);
+		assertNotNull(employee);
+		assertEquals(1, cache.size());
+		assertEquals(1, employee.getId());
+		cache.getUnchecked(2L);
+		cache.getUnchecked(1L);
+		cache.getUnchecked(3L);
+		assertEquals(2, cache.size());
+		cache.getUnchecked(2L);
+		cache.getUnchecked(4L);
+		assertEquals(2, cache.size());
 	}
 }
