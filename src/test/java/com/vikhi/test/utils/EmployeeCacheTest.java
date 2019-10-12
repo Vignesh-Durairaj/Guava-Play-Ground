@@ -2,6 +2,7 @@ package com.vikhi.test.utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -74,5 +75,6 @@ public class EmployeeCacheTest extends BaseTest{
 		employee = cache.getUnchecked(2L);
 		employee = cache.getUnchecked(1L);
 		assertEquals(1, cache.size());
+		assertNull(cache.getIfPresent(2L));
 	}
 }
