@@ -25,6 +25,7 @@ public class EmployeeCacheTest extends BaseTest{
 		empCache.setEmployeeDao(employeeDao);
 	}
 	
+	@DisplayName("Should cache the employee data properly")
 	@Test
 	void testSimpleEmployeeCache() {
 		LoadingCache<Long, Employee> cache = empCache.getSimpleEmployeeCache();
@@ -50,6 +51,7 @@ public class EmployeeCacheTest extends BaseTest{
 		assertEquals(4, cache.size());
 	}
 	
+	@DisplayName("Should handle the cache with a maximum limit of cached data")
 	@Test
 	void testSizeLimitedCache() {
 		LoadingCache<Long, Employee> cache = empCache.getSizeLimitedCache(2);
@@ -67,6 +69,7 @@ public class EmployeeCacheTest extends BaseTest{
 		assertEquals(2, cache.size());
 	}
 	
+	@DisplayName("Should handle the cache data properly with timeout option")
 	@Test
 	void testTimeLimitedCache() throws InterruptedException {
 		LoadingCache<Long, Employee> cache = empCache.getTimeLimitedCache(1);
