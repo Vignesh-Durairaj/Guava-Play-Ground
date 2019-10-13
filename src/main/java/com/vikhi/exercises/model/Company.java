@@ -1,7 +1,8 @@
 package com.vikhi.exercises.model;
 
 import java.util.List;
-import java.util.Map;
+
+import com.google.common.collect.Multimap;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -20,5 +21,5 @@ public class Company {
 	@NonNull final private Long id;
 	@NonNull final private String name;
 	private List<Employee> employees;
-	private Map<Long, String> phoneBook;
+	private Multimap<Long, String> phoneBook;
 }
