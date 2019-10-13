@@ -34,7 +34,7 @@ public class Company {
 		GlobalEventBus.getInstance().post(event);
 	}
 	
-	public void fireEmployee(Employee employeeToBeRemoved) {
+	public void removeEmployee(Employee employeeToBeRemoved) {
 		employees.remove(employeeToBeRemoved);
 		EmployeeTerminationEvent event = new EmployeeTerminationEvent(employeeToBeRemoved, phoneBook);
 		GlobalEventBus.getInstance().post(event);

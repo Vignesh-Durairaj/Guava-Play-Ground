@@ -7,7 +7,6 @@ public class EmployeeTerminationEvent {
 
 	private Employee employee;
 	private Multimap<Long, String> addressBook;
-	private long finalSettlement;
 
 	public EmployeeTerminationEvent(Employee employee, Multimap<Long, String> phoneBook) {
 		this.employee = employee;
@@ -20,13 +19,5 @@ public class EmployeeTerminationEvent {
 
 	public Multimap<Long, String> getAddressBook() {
 		return addressBook;
-	}
-
-	public long getFinalSettlement() {
-		return finalSettlement;
-	}
-
-	public void setFinalSettlement(long finalSettlement) {
-		this.finalSettlement = finalSettlement;
 	}
 }
