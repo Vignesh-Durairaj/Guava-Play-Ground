@@ -7,4 +7,6 @@ import com.vikhi.exercises.model.Employee;
 public interface EmployeeDao {
 
 	public List<Employee> getAllEmployees();
+	
+	public Employee getEmployeeById(final long id);
 }

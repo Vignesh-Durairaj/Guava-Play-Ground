@@ -1,5 +1,6 @@
 package com.vikhi.test.utils;
 
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -57,6 +58,7 @@ public class BaseTest {
 		employees.add(new Employee(2, persons.get(1), addresses.get(1), List.of(mobileNumbers.get(2))));
 		employees.add(new Employee(3, persons.get(2), addresses.get(2), List.of(mobileNumbers.get(3), mobileNumbers.get(4))));
 		when(employeeDao.getAllEmployees()).thenReturn(employees);
+		when(employeeDao.getEmployeeById(anyLong())).thenReturn(employees.get(0), employees.get(1), employees.get(2));
 		
 	}
 	
