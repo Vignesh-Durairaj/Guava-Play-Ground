@@ -31,7 +31,7 @@ public class BaseTest {
 	public void initData() {
 		List<Person> persons = new ArrayList<>();
 		persons.add(new Person("Vignesh", "Durairaj", 32));
-		persons.add(new Person(null, "Durairaj", 32));
+		persons.add(new Person(null, "Durairaj", 60));
 		persons.add(new Person("Vignesh", null, 32));
 		when(personDao.getPersons()).thenReturn(persons);
 		
@@ -54,9 +54,9 @@ public class BaseTest {
 		when(addressDao.getAddresses()).thenReturn(addresses);
 		
 		List<Employee> employees = new ArrayList<>();
-		employees.add(new Employee(1, persons.get(0), addresses.get(0), List.of(mobileNumbers.get(0), mobileNumbers.get(1))));
-		employees.add(new Employee(2, persons.get(1), addresses.get(1), List.of(mobileNumbers.get(2))));
-		employees.add(new Employee(3, persons.get(2), addresses.get(2), List.of(mobileNumbers.get(3), mobileNumbers.get(4))));
+		employees.add(new Employee(1, persons.get(0), addresses.get(0), List.of(mobileNumbers.get(0), mobileNumbers.get(1)), 20000L));
+		employees.add(new Employee(2, persons.get(1), addresses.get(1), List.of(mobileNumbers.get(2)), 20000L));
+		employees.add(new Employee(3, persons.get(2), addresses.get(2), List.of(mobileNumbers.get(3), mobileNumbers.get(4)), 0L));
 		when(employeeDao.getAllEmployees()).thenReturn(employees);
 		when(employeeDao.getEmployeeById(anyLong())).thenReturn(employees.get(0), employees.get(1), employees.get(2));
 		

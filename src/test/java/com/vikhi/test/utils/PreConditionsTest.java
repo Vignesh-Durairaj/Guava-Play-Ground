@@ -66,7 +66,7 @@ public class PreConditionsTest extends BaseTest {
 	@Test
 	void testForEmployeeAge() {
 		checkArgument(employeeTwo.getDetails().getAge() >= 18);
-		assertEquals(32, employeeTwo.getDetails().getAge());
+		assertEquals(60, employeeTwo.getDetails().getAge());
 		
 		employeeTwo.getDetails().setAge(17);
 		exc = assertThrows(IllegalArgumentException.class, () -> checkArgument(employeeTwo.getDetails().getAge() >= 18));
