@@ -1,13 +1,13 @@
 package com.vikhi.exercises.listeners;
 
 import com.google.common.eventbus.Subscribe;
-import com.vikhi.exercises.event.EmployeeEvent;
+import com.vikhi.exercises.event.EmployeeRecruitmentEvent;
 import com.vikhi.exercises.model.Employee;
 
 public class RecruitEmployeeListener {
 	
 	@Subscribe
-	public void recruitNewEmployee(EmployeeEvent event) {
+	public void recruitNewEmployee(EmployeeRecruitmentEvent event) {
 		Employee employee = event.getEmployee();
 		employee
 			.getMobileNumbers()

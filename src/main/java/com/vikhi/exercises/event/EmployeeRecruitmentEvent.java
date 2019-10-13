@@ -3,14 +3,14 @@ package com.vikhi.exercises.event;
 import com.google.common.collect.Multimap;
 import com.vikhi.exercises.model.Employee;
 
-public class EmployeeEvent {
+public class EmployeeRecruitmentEvent {
 
 	private Employee employee;
 	private Multimap<Long, String> addressBook;
 
-	public EmployeeEvent(Employee employee, Multimap<Long, String> addressBook) {
+	public EmployeeRecruitmentEvent(Employee employee, Multimap<Long, String> phoneBook) {
 		this.employee = employee;
-		this.addressBook = addressBook;
+		this.addressBook = phoneBook;
 	}
 
 	public Employee getEmployee() {
