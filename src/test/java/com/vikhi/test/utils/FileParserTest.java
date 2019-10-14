@@ -10,18 +10,14 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.vikhi.exercises.utils.FileParserHelper;
 
 @DisplayName("While parsing the input file into a list of words in it")
-public class FileParserTest {
+public class FileParserTest extends BaseTest {
 	
-	public static final Logger LOGGER = LogManager.getLogger(FileParserTest.class);
-
 	@DisplayName("Should contain all the words from a valid file")
 	@Test
 	void testAllWordsInFile() {
