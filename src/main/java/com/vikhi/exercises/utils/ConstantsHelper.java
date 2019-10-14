@@ -1,9 +1,9 @@
 package com.vikhi.exercises.utils;
 
-public class MyConstants {
+public class ConstantsHelper {
 
-	private MyConstants() {
-		throw new UnsupportedOperationException("Object instantiation not allowed for constant classes");
+	private ConstantsHelper() {
+		// To avoid instantiating outside.
 	}
 	
 	public static final String PIPE_SEPARATOR = "|";

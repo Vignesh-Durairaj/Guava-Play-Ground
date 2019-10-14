@@ -1,10 +1,10 @@
 package com.vikhi.test.utils;
 
-import static com.vikhi.exercises.utils.MyConstants.COLON;
-import static com.vikhi.exercises.utils.MyConstants.COMMA;
-import static com.vikhi.exercises.utils.MyConstants.PIPE_SEPARATOR;
-import static com.vikhi.exercises.utils.MyConstants.SEMI_COLON;
-import static com.vikhi.exercises.utils.MyConstants.WHITE_SPACE;
+import static com.vikhi.exercises.utils.ConstantsHelper.COLON;
+import static com.vikhi.exercises.utils.ConstantsHelper.COMMA;
+import static com.vikhi.exercises.utils.ConstantsHelper.PIPE_SEPARATOR;
+import static com.vikhi.exercises.utils.ConstantsHelper.SEMI_COLON;
+import static com.vikhi.exercises.utils.ConstantsHelper.WHITE_SPACE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -57,5 +57,10 @@ public class GuavaStringUtilsTest extends BaseTest{
 		Joiner joiner = Joiner.on(COLON);
 		String newString = mobileNumDao.getAllMobileNumbers().get(0).toString() + COLON + personDao.getPersons().get(0).toString();
 		assertEquals(newString, joiner.join(objects));
+	}
+	
+	@Test
+	void testSplitter() {
+		
 	}
 }
