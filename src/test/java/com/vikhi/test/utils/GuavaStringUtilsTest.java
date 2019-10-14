@@ -50,4 +50,12 @@ public class GuavaStringUtilsTest extends BaseTest{
 		joiner = Joiner.on(COMMA + WHITE_SPACE).useForNull("Some Null Value");
 		assertEquals("1, 2, Some Null Value, 3, 4, Some Null Value", joiner.join(ints));
 	}
+	
+	@Test
+	void testComplexObjectJoiner() {
+		List<Object> objects = List.of(mobileNumDao.getAllMobileNumbers().get(0), personDao.getPersons().get(0));
+		Joiner joiner = Joiner.on(COLON);
+		String newString = mobileNumDao.getAllMobileNumbers().get(0).toString() + COLON + personDao.getPersons().get(0).toString();
+		assertEquals(newString, joiner.join(objects));
+	}
 }
