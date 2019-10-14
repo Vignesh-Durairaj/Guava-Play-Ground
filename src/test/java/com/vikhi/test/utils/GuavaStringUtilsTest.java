@@ -44,7 +44,10 @@ public class GuavaStringUtilsTest extends BaseTest{
 		ints = Arrays.asList(1, 2, null, 3, 4, null);
 		assertThrows(NullPointerException.class, () -> joiner.join(ints));
 		
+		joiner = joiner.skipNulls();
+		assertEquals("1, 2, 3, 4", joiner.join(ints));
 		
-		
+		joiner = Joiner.on(COMMA + WHITE_SPACE).useForNull("Some Null Value");
+		assertEquals("1, 2, Some Null Value, 3, 4, Some Null Value", joiner.join(ints));
 	}
 }
