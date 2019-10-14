@@ -8,8 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.File;
 import java.util.Comparator;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,10 +16,8 @@ import com.google.common.collect.Multiset;
 import com.vikhi.exercises.collections.MultiSetExercise;
 
 @DisplayName("While creating a multi set object from an input file")
-public class MultiSetTest {
+public class MultiSetTest extends BaseTest {
 
-	private static final Logger LOGGER = LogManager.getLogger();
-	
 	private MultiSetExercise multiSetExercise;
 	
 	@BeforeEach
