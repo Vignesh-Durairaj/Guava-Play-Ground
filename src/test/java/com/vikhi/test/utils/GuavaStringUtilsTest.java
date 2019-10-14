@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.google.common.base.CharMatcher;
@@ -22,6 +23,7 @@ import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 import com.vikhi.exercises.utils.ConstantsHelper;
 
+@DisplayName("While trying to operate upon strings using guava string utils")
 public class GuavaStringUtilsTest extends BaseTest{
 	
 	private List<Integer> ints;
@@ -33,6 +35,7 @@ public class GuavaStringUtilsTest extends BaseTest{
 		initData();
 	}
 
+	@DisplayName("Should join an iterable collection to strings as configured")
 	@Test
 	void testSimpleJoiner() {
 		ints = List.of(1, 2, 3, 4, 5, 10);
@@ -58,6 +61,7 @@ public class GuavaStringUtilsTest extends BaseTest{
 		assertEquals("1, 2, Some Null Value, 3, 4, Some Null Value", joiner.join(ints));
 	}
 	
+	@DisplayName("Should join an iterable collection of complex objects to strings as configured")
 	@Test
 	void testComplexObjectJoiner() {
 		List<Object> objects = List.of(mobileNumDao.getAllMobileNumbers().get(0), personDao.getPersons().get(0));
@@ -66,6 +70,7 @@ public class GuavaStringUtilsTest extends BaseTest{
 		assertEquals(newString, joiner.join(objects));
 	}
 	
+	@DisplayName("Should split an string into an array or iterable as configured")
 	@Test
 	void testSplitter() {
 		splitter = Splitter.on(COLON);
