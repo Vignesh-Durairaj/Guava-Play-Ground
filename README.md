@@ -20,6 +20,7 @@ A play area to get hands on experience on Google Guava framework. Below are its 
 * Pre-Conditions
 * Cache Techniques in Guava
 * Event-Listener programming, using Guava EventBus
+* String Utils (Test only)
 
 ## Dependencies used
 
