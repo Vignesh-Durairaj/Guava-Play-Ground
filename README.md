@@ -33,3 +33,10 @@ A play area to get hands on experience on Google Guava framework. Below are its 
 * Java
   1. Runtime - JRE 11
   2. Build time - Java SE 11
+
+***
+
+### References Used
+
+* [Official Wiki](https://github.com/google/guava/wiki)
+* [Guava Collections](https://www.baeldung.com/guava-collections) from Baeldung  
