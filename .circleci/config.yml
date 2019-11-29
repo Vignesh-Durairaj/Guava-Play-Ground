@@ -31,7 +31,7 @@ jobs:
             file: target/my-reports/jacoco.xml
             token: 3fe8f7ff-2854-4ed2-a7dc-d2da10c2f109
          - store_artifacts: 
-            path: target/Guava-Exercises-0.0.1-SNAPSHOT.jar
+            path: target/GuavaExercises-0.0.1-SNAPSHOT.jar
 
 workflows:
   sonar-cloud:
