@@ -26,7 +26,7 @@ A play area to get hands on experience on Google Guava framework. Below are its 
 
 * Third party dependencies
   1. Project Lombok - To simplify the model objects
-  2. Log4j 2 - For logging (on both console and file)
+  2. Log4j 2 - For logging (on both console and file), YML based log configs
   3. JUnit 5 - For unit testing of the code
   4. Mockito 0.8 - For mocking the value objects while testing
 
