@@ -33,6 +33,12 @@ A play area to get hands on experience on Google Guava framework. Below are its 
 * Java
   1. Runtime - JRE 11
   2. Build time - Java SE 11
+  
+* CI
+  1. Circle CI - For build workdlow
+  2. CODACY - For overall code quality
+  3. Codecov.io - For Code coverage results
+  4. SonarCloud - For low level code quality analysis
 
 ***
 

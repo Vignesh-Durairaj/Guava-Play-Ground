@@ -10,18 +10,31 @@ jobs:
          MAVEN_OPTS: -Xmx2048m
       steps:
          - checkout
+         - run:
+            name: Analyzing on SonarCloud
+            command: mvn verify sonar:sonar
          - restore_cache:
             key: Guava-Play-Ground-{{ checksum "pom.xml" }}
-         - run: mvn dependency:go-offline
+         - run: 
+            name: Managing Caches
+            command: mvn dependency:go-offline
          - save_cache: 
             paths:
                - ~/.m2
             key: Guava-Play-Ground-{{ checksum "pom.xml" }}
-         - run: mvn package
+         - run: 
+            name: Building package
+            command: mvn package
          - store_test_results: 
             path: target/surefire-reports
          - codecov/upload:
             file: target/my-reports/jacoco.xml
             token: 3fe8f7ff-2854-4ed2-a7dc-d2da10c2f109
          - store_artifacts: 
-            path: target/Guava-Exercises-0.0.1-SNAPSHOT.jar
+            path: target/GuavaExercises-0.0.1-SNAPSHOT.jar
+
+workflows:
+  sonar-cloud:
+    jobs:
+      - build:
+          context: SonarCloud
