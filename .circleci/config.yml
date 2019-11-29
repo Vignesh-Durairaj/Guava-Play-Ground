@@ -34,7 +34,7 @@ jobs:
             path: target/Guava-Exercises-0.0.1-SNAPSHOT.jar
 
 workflows:
-  main:
+  sonar-cloud:
     jobs:
-      - sonar-cloud:
+      - build:
           context: SonarCloud
