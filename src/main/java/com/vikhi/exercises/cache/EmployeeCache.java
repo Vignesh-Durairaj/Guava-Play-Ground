@@ -9,7 +9,6 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.google.common.cache.RemovalListener;
-import com.google.common.cache.RemovalNotification;
 import com.vikhi.exercises.dao.EmployeeDao;
 import com.vikhi.exercises.model.Employee;
 
@@ -23,21 +22,15 @@ public class EmployeeCache {
 	
 			@Override
 			public Employee load(Long id) throws Exception {
-				LOGGER.info("Fresh fetch of data from source, for employee id : " + id);
+				LOGGER.info("Fresh fetch of data from source, for employee id : {}", id);
 				return employeeDao.getEmployeeById(id);
 			}
 	};
 	
-	private RemovalListener<Long, Employee> employeeRemovalListener = 
-			new RemovalListener<Long, Employee>() {
-				
-				@Override
-				public void onRemoval(RemovalNotification<Long, Employee> removalEvent) {
-					LOGGER.info(String.format("Employee of ID %s removed owing to the reason '%s'", 
-							removalEvent.getKey().longValue(), 
-							removalEvent.getCause().name()));
-				}
-			};
+	private RemovalListener<Long, Employee> employeeRemovalListener = removalEvent -> {
+		String cause = removalEvent.getCause().name();
+		LOGGER.info("Employee of ID {} removed owing to the reason '{}'", removalEvent.getKey(), cause);
+	};
 
 	public LoadingCache<Long, Employee> getSimpleEmployeeCache() {
 		return CacheBuilder
