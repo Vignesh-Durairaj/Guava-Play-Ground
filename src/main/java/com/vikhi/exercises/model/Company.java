@@ -23,8 +23,8 @@ import lombok.ToString;
 @ToString
 public class Company {
 
-	@NonNull final private Long id;
-	@NonNull final private String name;
+	@NonNull private final Long id;
+	@NonNull private final String name;
 	private List<Employee> employees = new ArrayList<>();
 	private Multimap<Long, String> phoneBook = MultimapBuilder.hashKeys().arrayListValues().build();
 	
