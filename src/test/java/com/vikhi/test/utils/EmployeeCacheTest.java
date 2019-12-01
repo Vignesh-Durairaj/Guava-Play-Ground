@@ -75,11 +75,8 @@ public class EmployeeCacheTest extends BaseTest{
 		LoadingCache<Long, Employee> cache = empCache.getTimeLimitedCache(1);
 		assertEquals(0, cache.size());
 		employee = cache.getUnchecked(1L);
-		Thread.sleep(10);
 		employee = cache.getUnchecked(2L);
-		Thread.sleep(10);
 		employee = cache.getUnchecked(1L);
-		Thread.sleep(10);
 		assertEquals(1, cache.size());
 		assertNull(cache.getIfPresent(2L));
 	}
