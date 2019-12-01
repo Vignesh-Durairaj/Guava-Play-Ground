@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import com.google.common.eventbus.Subscribe;
 import com.vikhi.exercises.event.EmployeeTerminationEvent;
 import com.vikhi.exercises.model.Employee;
+import com.vikhi.exercises.model.Person;
 
 public class TerminateEmployeeListener {
 
@@ -14,7 +15,8 @@ public class TerminateEmployeeListener {
 	@Subscribe
 	public void terminateAnEmployee(EmployeeTerminationEvent event) {
 		Employee employee = event.getEmployee();
+		Person employeeDetail = employee.getDetails();
 		event.getAddressBook().removeAll(Long.valueOf(employee.getId()));
-		LOGGER.info(String.format("Employee %s has been removed from the company", employee.getDetails().getFirstName() + " - " + employee.getDetails().getLastName()));
+		LOGGER.info("Employee {} - {} has been removed from the company", employeeDetail.getFirstName(), employeeDetail.getLastName());
 	}
 }
