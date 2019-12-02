@@ -28,7 +28,7 @@ public class FileParserHelper {
 		try (Stream<String> fileStream = Files.lines(inputFilePath)) {
 			words = fileStream
 					.map(line -> line.replaceAll("[,.]", "").toLowerCase().split(" "))
-					.flatMap(arr -> Arrays.stream(arr))
+					.flatMap(Arrays::stream)
 					.filter(word -> !"".equals(word))
 					.collect(Collectors.toList());
 		} catch (IOException e) {
