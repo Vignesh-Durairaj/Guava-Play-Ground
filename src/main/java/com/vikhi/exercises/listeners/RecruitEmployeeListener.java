@@ -1,5 +1,7 @@
 package com.vikhi.exercises.listeners;
 
+import static java.lang.String.format;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,7 +21,7 @@ public class RecruitEmployeeListener {
 		employee
 			.getMobileNumbers()
 			.stream()
-			.map(mn -> mn.getCountryCode() + " - " + mn.getNumber())
+			.map(mn -> format("%s - %s", mn.getCountryCode(), mn.getNumber()))
 			.forEach(mn -> event.getAddressBook().put(employee.getId(), mn));
 		LOGGER.info("Company phonebook updated to size {} !", addressBook.size());
 	}

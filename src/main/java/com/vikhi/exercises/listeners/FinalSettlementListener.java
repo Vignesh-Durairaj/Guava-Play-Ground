@@ -24,8 +24,7 @@ public class FinalSettlementListener {
 			settlementAmount = employee.getSalary() * 12;
 		}
 		
-		LOGGER.info("Final settlemtent of INR {}/- has been processed for employee : {}", 
-				settlementAmount, 
-				employeeDetails.getFirstName() + " - " + employeeDetails.getLastName());
+		LOGGER.info("Final settlemtent of INR {}/- has been processed for employee : {} - {}", 
+				settlementAmount, employeeDetails.getFirstName(), employeeDetails.getLastName());
 	}
 }
