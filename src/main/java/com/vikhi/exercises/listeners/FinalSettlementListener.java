@@ -17,15 +17,14 @@ public class FinalSettlementListener {
 		Employee employee = event.getEmployee();
 		Person employeeDetails = employee.getDetails();
 		
-		Long settlementAmount = 0L;
+		Long settlementAmount;
 		if (employeeDetails.getAge() >= 60) {
 			settlementAmount = employee.getSalary() * 12 * 5;
 		} else {
 			settlementAmount = employee.getSalary() * 12;
 		}
 		
-		LOGGER.info(String.format("Final settlemtent of INR %s/- has been processed for employee : ", 
-				settlementAmount, 
-				employee.getDetails().getFirstName() + " - " + employee.getDetails().getLastName()));
+		LOGGER.info("Final settlemtent of INR {}/- has been processed for employee : {} - {}", 
+				settlementAmount, employeeDetails.getFirstName(), employeeDetails.getLastName());
 	}
 }
