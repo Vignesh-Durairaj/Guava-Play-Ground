@@ -1,6 +1,5 @@
 package com.vikhi.test.utils;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -10,7 +9,6 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.jupiter.api.Test;
 
 import com.vikhi.exercises.dao.AddressDao;
 import com.vikhi.exercises.dao.EmployeeDao;
@@ -61,11 +59,6 @@ public class BaseTest {
 		employees.add(new Employee(3, persons.get(2), addresses.get(2), List.of(mobileNumbers.get(3), mobileNumbers.get(4)), 0L));
 		when(employeeDao.getAllEmployees()).thenReturn(employees);
 		when(employeeDao.getEmployeeById(anyLong())).thenReturn(employees.get(0), employees.get(1), employees.get(2));
-	}
-	
-	@Test
-	void testData() {
-		assertNotNull("Test");
 	}
 	
 }
